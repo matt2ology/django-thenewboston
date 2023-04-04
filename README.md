@@ -18,10 +18,10 @@ Use the virtual environment
 
 Make sure both pip are up to date and are configured in you Environment Varables of your system
 
-> python.exe -m pip install --upgrade pip
-
 - [`easy_install` is now deprecated](https://packaging.python.org/en/latest/discussions/pip-vs-easy-install/)
-  - [Easy Install](https://setuptools.pypa.io/en/latest/deprecated/easy_install.html)
+- [Easy Install](https://setuptools.pypa.io/en/latest/deprecated/easy_install.html)
+
+> python.exe -m pip install --upgrade pip
 
 Install Django
 
@@ -30,3 +30,6 @@ Install Django
 Check Django has been installed
 
 > django-admin --version
+
+
+## [Django Tutorial for Beginners - 2 - Creating a Project](https://www.youtube.com/watch?v=CHjXtRrhqxc&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK&index=2)
