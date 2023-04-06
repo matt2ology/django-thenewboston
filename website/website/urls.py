@@ -19,6 +19,10 @@ from django.urls import path
 from django.urls import include  # allows referencing other URLconfs.
 
 urlpatterns = [
+    # q: whats the difference between path and re_path?
+    # a: a path is a string, a re_path is a regex.
+    # q: whats the difference between a URL Resolver and a URL Pattern?
+    # a: a URL Resolver is a regex, a URL Pattern is a string.
     path('admin/', admin.site.urls),
     path('music/', include('music.urls')),
 ]
