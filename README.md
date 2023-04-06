@@ -6,7 +6,7 @@
 
 [venv — Creation of virtual environments](https://docs.python.org/3/library/venv.html)
 
-[Development Notes](https://github.com/matt2ology/obsidian-technical-notes/tree/main/thenewboston-django-tutorial-for-beginners)
+[Development/Reference Notes](https://github.com/matt2ology/obsidian-technical-notes/tree/main/thenewboston-django-tutorial-for-beginners)
 
 Create the development virtual environment
 
