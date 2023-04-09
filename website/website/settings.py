@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'music.apps.MusicConfig', # new app added here so that django knows about it and can use it in the project
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
