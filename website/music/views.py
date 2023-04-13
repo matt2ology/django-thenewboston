@@ -1,9 +1,9 @@
 from django.http import HttpResponse  # basic HTML code or a redirect.
-from django.template import loader  # to load the template. (HTML file)
+from django.shortcuts import render  # render a template and pass it a context.
 from .models import Album  # import the Album model from the models.py file.
 
 
-def index(request: any) -> HttpResponse:
+def index_old_long_way(request: any) -> HttpResponse:
     """ Returns the index page for the Music app.
 
     Args:
@@ -21,6 +21,22 @@ def index(request: any) -> HttpResponse:
         'all_albums': ALL_ALBUMS,
     }
     return HttpResponse(TEMPLATE.render(CONTEXT, request))
+
+
+def index(request: any) -> HttpResponse:
+    """ Returns the index page for the Music app.
+
+    Args:
+        request (_type_): this is always the first argument of any view function.
+
+    Returns:
+        _type_: HttpResponse object.
+    """
+    # get all the albums from the database, so we can pass it to the template.
+    ALL_ALBUMS: object = Album.objects.all()
+    # CONTEXT is a dictionary that maps template variable names to Python objects.
+    CONTEXT: dict = {'all_albums': ALL_ALBUMS}
+    return render(request, 'music/index.html', CONTEXT)
 
 
 def detail(request: any, album_id: int) -> HttpResponse:
