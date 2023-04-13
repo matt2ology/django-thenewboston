@@ -1,5 +1,6 @@
 from .models import Album  # import the Album model from the models.py file.
 
+from django.http import Http404  # raise an Http404 exception.
 from django.http import HttpResponse  # basic HTML code or a redirect.
 from django.shortcuts import render  # render a template and pass it a context.
 
