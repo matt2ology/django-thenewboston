@@ -1,6 +1,7 @@
+from .models import Album  # import the Album model from the models.py file.
+
 from django.http import HttpResponse  # basic HTML code or a redirect.
 from django.shortcuts import render  # render a template and pass it a context.
-from .models import Album  # import the Album model from the models.py file.
 
 
 def index_old_long_way(request: any) -> HttpResponse:
