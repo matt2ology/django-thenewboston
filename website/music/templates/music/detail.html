@@ -123,6 +123,11 @@
       <p>Genre: {{ album.genre }}</p>
       <p>Album Name: {{ album.album_title }}</p>
       <p>Artist: {{ album.artist }}</p>
+      <ul>
+        {% for song in album.song_set.all %}
+        <li> {{ song.song_title }} </li>
+        {% endfor %}
+      </ul>
     </main>
     <aside>
       <h1>Aside</h1>
