@@ -22,13 +22,17 @@ def index(request: any) -> HttpResponse:
 
 
 def detail(request: any, album_id: int) -> HttpResponse:
-    """ Returns the details for the album with the given album_id.
+    """ Returns the detail page for the Music app.
 
     Args:
         request (_type_): this is always the first argument of any view function.
-        album_id (int): the id of the album.
+        album_id (_type_): the id of the album.
 
     Returns:
         _type_: HttpResponse object.
     """
-    return HttpResponse("<h2>Details for Album id: " + str(album_id) + "</h2>")
+    try:
+        ALBUM: object = Album.objects.get(pk=album_id)
+    except Album.DoesNotExist:
+        raise Http404("Album does not exist")
+    return render(request, 'music/detail.html', {'album': ALBUM})
