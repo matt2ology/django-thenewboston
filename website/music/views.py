@@ -5,26 +5,6 @@ from django.http import HttpResponse  # basic HTML code or a redirect.
 from django.shortcuts import render  # render a template and pass it a context.
 
 
-def index_old_long_way(request: any) -> HttpResponse:
-    """ Returns the index page for the Music app.
-
-    Args:
-        request (_type_): this is always the first argument of any view function.
-
-    Returns:
-        _type_: HttpResponse object.
-    """
-    # get all the albums from the database, so we can pass it to the template.
-    ALL_ALBUMS: object = Album.objects.all()
-    # load the template, so we can pass it to the HttpResponse object.
-    TEMPLATE: object = loader.get_template('music/index.html')
-    # CONTEXT is a dictionary that maps template variable names to Python objects.
-    CONTEXT: dict = {
-        'all_albums': ALL_ALBUMS,
-    }
-    return HttpResponse(TEMPLATE.render(CONTEXT, request))
-
-
 def index(request: any) -> HttpResponse:
     """ Returns the index page for the Music app.
 
