@@ -137,16 +137,26 @@
         <a href="{% url 'index' %}" class="active">HOME</a>
       </ul>
     </nav>
-    <main>
-      <h1>Album Details</h1>
-      <p>Genre: {{ album.genre }}</p>
-      <p>Album Name: {{ album.album_title }}</p>
-      <p>Artist: {{ album.artist }}</p>
-      <ul>
-        {% for song in album.song_set.all %}
-        <li> {{ song.song_title }} </li>
-        {% endfor %}
-      </ul>
+    <main class="main-grid">
+      <div class="box">
+        <h1>Album Details</h1>
+        <p>Genre: {{ album.genre }}</p>
+        <p>Album Name: {{ album.album_title }}</p>
+        <p>Artist: {{ album.artist }}</p>
+        <ul>
+          {% for song in album.song_set.all %}
+          <li> {{ song.song_title }} </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="box">
+        <h1>Album Cover</h1>
+        {% if album.album_logo_file %}
+        <img src="{{ album.album_logo_file }}" alt="Album Cover" width="300" height="300">
+        {% else %}
+        <img src="{{ album.album_logo_url }}" alt="Album Cover Not Found" width="300" height="300">
+        {% endif %}
+      </div>
     </main>
     <aside>
       <h1>Aside</h1>
