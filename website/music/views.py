@@ -1,8 +1,7 @@
 from .models import Album  # import the Album model from the models.py file.
 
-from django.http import Http404  # raise an Http404 exception.
 from django.http import HttpResponse  # basic HTML code or a redirect.
-from django.shortcuts import render  # render a template and pass it a context.
+from django.shortcuts import render, get_object_or_404  # render a template.
 
 
 def index(request: any) -> HttpResponse:
@@ -31,8 +30,6 @@ def detail(request: any, album_id: int) -> HttpResponse:
     Returns:
         _type_: HttpResponse object.
     """
-    try:
-        ALBUM: object = Album.objects.get(pk=album_id)
-    except Album.DoesNotExist:
-        raise Http404("Album does not exist")
+    ALBUM = get_object_or_404(
+        Album, pk=album_id)  # removes the need for try/except block.
     return render(request, 'music/detail.html', {'album': ALBUM})
