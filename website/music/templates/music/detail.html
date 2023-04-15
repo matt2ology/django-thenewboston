@@ -93,6 +93,25 @@
       padding: 25px 15px;
     }
 
+    .main-grid {
+      background-color: #fff;
+      color: #444;
+      display: grid;
+      grid-gap: 20px;
+      /* 2 columns */
+      grid-template-columns: repeat(2, [col] auto);
+      /* 1 row */
+      grid-template-rows: repeat(1, [row] auto);
+    }
+
+    .box {
+      background-color: #444;
+      color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      font-size: 150%;
+    }
+
     aside {
       background-color: #454a4c;
       color: #ffffff;
