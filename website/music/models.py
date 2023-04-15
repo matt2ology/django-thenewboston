@@ -12,7 +12,7 @@ class Album(models.Model):
     album_title = models.CharField(max_length=500)
     genre = models.CharField(max_length=250)
     # URL to album logo image file
-    album_logo = models.CharField(max_length=1000)
+    album_logo_url = models.CharField(max_length=1000)
 
     def __str__(self):
         """This is what will be displayed in the admin page
