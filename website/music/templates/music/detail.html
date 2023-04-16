@@ -143,7 +143,9 @@
         <p>Genre: {{ album.genre }}</p>
         <p>Album Name: {{ album.album_title }}</p>
         <p>Artist: {{ album.artist }}</p>
-        <ul>
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
           {% for song in album.song_set.all %}
           <li> {{ song.song_title }} </li>
           {% endfor %}
