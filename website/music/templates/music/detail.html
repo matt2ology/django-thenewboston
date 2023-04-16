@@ -146,10 +146,20 @@
         {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
         {% endif %}
+        <form action="{% url 'music:favorite' album.id %}" method="post">
+          <!-- cross site request forgery token is required for POST requests -->
+          {% csrf_token %}
           {% for song in album.song_set.all %}
-          <li> {{ song.song_title }} </li>
+          <input type="checkbox" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
+          <label for="song{{ forloop.counter }}">
+            {{ song.song_title }}
+            {% if song.is_favorite %}
+            🥰
+            {% endif %}
+          </label><br>
           {% endfor %}
-        </ul>
+          <input type="submit" value="Submit Favorite">
+        </form>
       </div>
       <div class="box">
         <h1>Album Cover</h1>
