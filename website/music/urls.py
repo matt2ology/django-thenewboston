@@ -9,4 +9,6 @@ urlpatterns = [
     # q: how do you do path with regex?
     # a: https://docs.djangoproject.com/en/4.2/topics/http/urls/#example
     path('<int:album_id>/', views.detail, name='detail'), # pattern : /music/album_id/
+    # pattern : /music/album_id/favorite/
+    path('<int:album_id>/favorite/', views.favorite, name='favorite'),
 ]
