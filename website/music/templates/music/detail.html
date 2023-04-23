@@ -1,65 +1,39 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>Music:details</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'music/detail.css' %}">
-</head>
-
-<body>
-  <div id="grid-container">
-    <header id="masthead">
-      <h1>Music</h1>
-    </header>
-    <nav id="menu">
-      <ul>
-        <a href="{% url 'music:index' %}" class="active">HOME</a>
-      </ul>
-    </nav>
-    <main class="main-grid">
-      <div class="box">
-        <h1>Album Details</h1>
-        <p>Genre: {{ album.genre }}</p>
-        <p>Album Name: {{ album.album_title }}</p>
-        <p>Artist: {{ album.artist }}</p>
-        {% if error_message %}
-        <p><strong>{{ error_message }}</strong></p>
+{% extends 'music/base.html' %}
+{% block title %}Album Details{% endblock %}
+{% block content %}
+<main>
+  <div>
+    <h1>Album Details</h1>
+    <p>Genre: {{ album.genre }}</p>
+    <p>Album Name: {{ album.album_title }}</p>
+    <p>Artist: {{ album.artist }}</p>
+    {% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+    <form action="{% url 'music:favorite' album.id %}" method="post">
+      <!-- cross site request forgery token is required for POST requests -->
+      {% csrf_token %}
+      {% for song in album.song_set.all %}
+      <input type="checkbox" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
+      <label for="song{{ forloop.counter }}">
+        {{ song.song_title }}
+        {% if song.is_favorite %}
+        🥰
         {% endif %}
-        <form action="{% url 'music:favorite' album.id %}" method="post">
-          <!-- cross site request forgery token is required for POST requests -->
-          {% csrf_token %}
-          {% for song in album.song_set.all %}
-          <input type="checkbox" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
-          <label for="song{{ forloop.counter }}">
-            {{ song.song_title }}
-            {% if song.is_favorite %}
-            🥰
-            {% endif %}
-          </label><br>
-          {% endfor %}
-          <input type="submit" value="Submit Favorite">
-        </form>
-      </div>
-      <div class="box">
-        <h1>Album Cover</h1>
-        {% if album.album_logo_file %}
-        <img src="{{ album.album_logo_file }}" alt="Album Cover" width="300" height="300">
-        {% else %}
-        <img src="{{ album.album_logo_url }}" alt="Album Cover Not Found" width="300" height="300">
-        {% endif %}
-      </div>
-    </main>
-    <aside>
-      <h1>Aside</h1>
-      <p>This is the aside content of the page.</p>
-    </aside>
-    <footer>
-      <h1>Footer</h1>
-      <p>This is the footer content of the page.</p>
-    </footer>
+      </label><br>
+      {% endfor %}
+      <input type="submit" value="Submit Favorite">
+    </form>
   </div>
-</body>
-
-</html>
+  <div>
+    <h1>Album Cover</h1>
+    {% if album.album_logo_file %}
+    <img src="{{ album.album_logo_file }}" alt="Album Cover" width="300" height="300">
+    {% else %}
+    <img src="{{ album.album_logo_url }}" alt="Album Cover Not Found" width="300" height="300">
+    {% endif %}
+  </div>
+</main>
+{% endblock %}
