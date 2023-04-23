@@ -15,36 +15,82 @@
 </head>
 
 <body>
-    <div id="grid-container">
-        <header id="masthead">
-            <h1>Music</h1>
-        </header>
-        <nav id="menu">
-            <ul>
-                <a href="{% url 'music:index' %}" class="active">HOME</a>
-            </ul>
-        </nav>
-        <main>
-            <h1>Albums</h1>
-            {% if all_albums %}
-            <ul>
-                {% for album in all_albums %}
-                <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <h2>No albums are available.</h2>
-            {% endif %}
-        </main>
-        <aside>
-            <h1>Aside</h1>
-            <p>This is the aside content of the page.</p>
-        </aside>
-        <footer>
-            <h1>Footer</h1>
-            <p>This is the footer content of the page.</p>
-        </footer>
-    </div>
+    <header>
+        <h1>Music</h1>
+    </header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topNavBar"
+                    aria-expanded="false">
+                    <!-- Start of Hamburger Menu -->
+                    <span class="sr-only">Toggle navigation</span>
+                    <!-- three horizontal lines -->
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <!-- End of Hamburger Menu -->
+                </button>
+                <a class="navbar-brand" href="{% url 'music:index' %}">MewSic</a>
+            </div>
+            <!-- menu items -->
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{% url 'music:index' %}">
+                            <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Albums
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href=#>
+                            <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp; Songs
+                        </a>
+                    </li>
+                </ul>
+                <!-- search form -->
+                <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" name="query" value="">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form> <!-- end of search form -->
+                <!-- right side of navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                        </a>
+                    </li>
+                </ul> <!-- end of right side of navbar -->
+            </div>
+        </div>
+    </nav>
+    <main>
+        <h1>Albums</h1>
+        {% if all_albums %}
+        <ul>
+            {% for album in all_albums %}
+            <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h2>No albums are available.</h2>
+        {% endif %}
+    </main>
+    <aside>
+        <h1>Aside</h1>
+        <p>This is the aside content of the page.</p>
+    </aside>
+    <footer>
+        <h1>Footer</h1>
+        <p>This is the footer content of the page.</p>
+    </footer>
 </body>
 
 </html>
